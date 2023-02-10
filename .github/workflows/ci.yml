@@ -1,0 +1,39 @@
+name: "CI"
+
+on:  
+  pull_request:
+    branches: ["master"]
+  
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of sonar-analysis
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@main
+        with:
+          deno-version: v1.x
+
+      - name: Verify formatting and Linter
+        run: deno fmt --check && deno lint      
+
+      - name: Run tests
+        run: deno test --coverage=coverage --allow-read
+
+      - name: Convert coverage results to lcov
+        run: deno coverage coverage --lcov --output=coverage/coverage.lcov
+
+      # Workaround: deno's lcov are always absolutes
+      - name: Echo lcov contents and current dir contents
+        run: sed -i "s|SF:$(pwd)|SF:.|g" coverage/coverage.lcov
+
+      
+  
