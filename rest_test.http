@@ -1,0 +1,13 @@
+###
+GET http://localhost:8888/medal HTTP/1.1
+
+
+###
+POST http://localhost:8888/medal HTTP/1.1
+content-type: application/json
+
+{
+    "awardedBy": "sample 312",
+    "awardedOn": "Wed, 21 Oct 2015 18:27:50 GMT",
+    "pictureUrl": "https://google.com/"
+}

@@ -27,13 +27,3 @@ jobs:
 
       - name: Run tests
         run: deno test --coverage=coverage --allow-read
-
-      - name: Convert coverage results to lcov
-        run: deno coverage coverage --lcov --output=coverage/coverage.lcov
-
-      # Workaround: deno's lcov are always absolutes
-      - name: Echo lcov contents and current dir contents
-        run: sed -i "s|SF:$(pwd)|SF:.|g" coverage/coverage.lcov
-
-      
-  
