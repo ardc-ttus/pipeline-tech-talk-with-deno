@@ -1,5 +1,5 @@
 import { beforeEach, describe, it } from "std-bdd";
-import { BodyJson, Status, testing } from "oak";
+import { BodyJson, Status, testing } from "./deps.ts";
 import { assertEquals, assertNotEquals } from "std-asserts";
 import { IMedalRepository, MedalInterface, MedalRepository } from "./medal.ts";
 import { addAMedal, createMedalApi, listAllMedals } from "./api.ts";

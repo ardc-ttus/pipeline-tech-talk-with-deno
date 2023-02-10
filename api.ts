@@ -1,4 +1,4 @@
-import { Application, Context, Router, Status } from "oak";
+import { Application, Context, Router, Status } from "./deps.ts";
 import { IMedalRepository, MedalInterface } from "./medal.ts";
 
 /**
