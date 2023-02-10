@@ -23,7 +23,6 @@ jobs:
       
       - name: Publish the image
         run: |
-          docker build . --tag ghcr.io/ardc-ttus/pipeline-tech-talk-with-deno:latest
-          docker run ghcr.io/ardc-ttus/pipeline-tech-talk-with-deno:latest
+          docker build . --tag ghcr.io/ardc-ttus/pipeline-tech-talk-with-deno:latest          
           docker push ghcr.io/ardc-ttus/pipeline-tech-talk-with-deno:latest
         
