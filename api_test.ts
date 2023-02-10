@@ -64,7 +64,7 @@ describe("Medal API", () => {
   });
 
   it("should be configurable by createMedalApi", () => {
-    const got = createMedalApi(new MedalRepository())
-    assertNotEquals(got, testing.createMockApp())
+    const got = createMedalApi(new MedalRepository());
+    assertNotEquals(got, testing.createMockApp());
   });
 });
