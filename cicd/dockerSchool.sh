@@ -2,7 +2,7 @@
 
 echo "!!reminder: run this from root folder!!"
 
-docker build -t="medal-api:latest" -f cicd/Dockerfile .
+docker build -t="medal-api:latest" -f Dockerfile .
 if [ $? -ne 0 ]; then    
     exit -1
 fi
