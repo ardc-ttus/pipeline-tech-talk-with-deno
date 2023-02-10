@@ -1,4 +1,4 @@
-import { Context, Status, Router, Application } from "oak";
+import { Application, Context, Router, Status } from "./deps.ts";
 import { IMedalRepository, MedalInterface } from "./medal.ts";
 
 /**
@@ -7,7 +7,7 @@ import { IMedalRepository, MedalInterface } from "./medal.ts";
  * @param medalRepository repository to query for medals
  */
 export function listAllMedals(ctx: Context, medalRepository: IMedalRepository) {
-  console.debug("listing all medals")
+  console.debug("listing all medals");
   ctx.response.body = JSON.stringify(medalRepository.all());
 }
 
@@ -21,7 +21,7 @@ export async function addAMedal(
   ctx: Context,
   medalRepository: IMedalRepository,
 ) {
-  console.debug("adding a medal")
+  console.debug("adding a medal");
   const content = ctx.request.body();
   if (content.type != "json") {
     ctx.response.status = Status.BadRequest;
@@ -39,13 +39,16 @@ export async function addAMedal(
  * @param param0 the state for initializing the api.
  * @returns an Oak app ready to run
  */
-export function createMedalApi(medalRepository: IMedalRepository, app: Application = new Application()) {
-  const router = new Router()  
+export function createMedalApi(
+  medalRepository: IMedalRepository,
+  app: Application = new Application(),
+) {
+  const router = new Router();
   router
     .post("/medal", (ctx) => addAMedal(ctx, medalRepository))
-    .get("/medal", (ctx) => listAllMedals(ctx, medalRepository))
+    .get("/medal", (ctx) => listAllMedals(ctx, medalRepository));
   app
     .use(router.routes())
-    .use(router.allowedMethods())
+    .use(router.allowedMethods());
   return app;
 }
